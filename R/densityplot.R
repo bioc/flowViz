@@ -5,13 +5,17 @@
 
 ## Dedicated prepanel function to set up dimensions
 prepanel.densityplot.flowset <- 
-    function(x, y, darg=list(n=50, na.rm=TRUE), frames, 
+    function(x, y, frames, 
              overlap=0.3, subscripts, ...,
              which.channel)
 {
     channel.name <- unique(which.channel[subscripts])
     stopifnot(length(channel.name) == 1)
-    xl <- range(eapply(frames@frames, range, channel.name), finite=TRUE)
+    if(extends(class(frames),"flowSet"))
+      ranglist <- eapply(frames@frames, range, channel.name)
+    else
+      ranglist <- lapply(sampleNames(frames), function(sn)range(frames[[sn, channel.name, use.exprs = FALSE]]))
+    xl <- range(ranglist, finite=TRUE)
     list(xlim=xl + c(-1,1)*0.07*diff(xl))   
 }
 
@@ -113,7 +117,7 @@ panel.densityplot.flowset <-
             ## we need a smaller bandwidth than the default and keep it constant
             if(length(xxt)){
                 if(!("bw" %in% names(darg)))
-                    darg$bw <- diff(r)/50
+                    darg$bw <- "SJ"
                 h <- do.call(density, c(list(x=xxt), darg))
                 n <- length(h$x)
                 max.d <- max(h$y)
@@ -365,10 +369,10 @@ panel.densityplot.flowFrame <-
           ## margin=FALSE
           if(margin<1)
             mbar(xx, list(pl, pr), r, 1, col, margin)
-          ## we need a smaller bandwidth than the default and keep it constant
+          
           if(length(xxt)){
             if(!("bw" %in% names(darg)))
-              darg$bw <- diff(r)/50
+              darg$bw <- "SJ"
             h <- do.call(density, c(list(x=xxt), darg))
             n <- length(h$x)
             max.d <- max(h$y)
