@@ -5,8 +5,8 @@
 \alias{levelplot,formula,flowSet-method}
 \alias{lattice-methods}
 \alias{qqmath,formula,flowSet-method}
-\alias{parallel,flowFrame,missing-method}
-\alias{parallel,formula,flowSet-method}
+\alias{parallelplot,flowFrame,missing-method}
+\alias{parallelplot,formula,flowSet-method}
 \title{Methods implementing Lattice displays for flow data}
 \usage{
 \S4method{levelplot}{formula,flowSet}(x, data, xlab, ylab,
@@ -16,10 +16,10 @@
   f.value = function(n) ppoints(ceiling(sqrt(n))),
   distribution = qnorm, ...)
 
-\S4method{parallel}{flowFrame,missing}(x, data, reorder.by = function(x)
+\S4method{parallelplot}{flowFrame,missing}(x, data, reorder.by = function(x)
   var(x, na.rm = TRUE), time = "Time", exclude.time = TRUE, ...)
 
-\S4method{parallel}{formula,flowSet}(x, data, time = "Time",
+\S4method{parallelplot}{formula,flowSet}(x, data, time = "Time",
   exclude.time = TRUE, filter = NULL, xlab = NULL, ylab = NULL,
   ...)
 }
@@ -87,7 +87,7 @@ to the \code{xyplot} method, but plots estimated density (using
 \code{\link[MASS:kde2d]{kde2d}}) with a common z-scale and an optional color
 key.  }
 
-\item{parallel}{\code{signature(x = "flowFrame", data = "missing")}: draws a
+\item{parallelplot}{\code{signature(x = "flowFrame", data = "missing")}: draws a
 parallel coordinates plot of all channels (excluding time, by default) of a
 \code{flowFrame} object.  This is rarely useful without transparency, but
 that is currently only possible with the \code{\link{pdf}} device (and
@@ -118,12 +118,12 @@ levelplot(asinh(`SSC-H`) ~ asinh(`FSC-H`) | Visit + Patient, GvHD, n = 20,
 
 ## parallel coordinate plots
 
-parallel(GvHD[["s6a01"]])
+parallelplot(GvHD[["s6a01"]])
 
 \dontrun{
 
 ## try with PDF device
-parallel(GvHD[["s7a01"]], alpha = 0.01)
+parallelplot(GvHD[["s7a01"]], alpha = 0.01)
 
 }
 
