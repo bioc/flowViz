@@ -6,7 +6,7 @@
 
 #' @export 
 #' @rdname lattice-methods
-setMethod("parallel",
+setMethod("parallelplot",
           signature(x = "flowFrame", data = "missing"),
           function(x, data, 
                    reorder.by = function(x) var(x, na.rm = TRUE),
@@ -50,7 +50,7 @@ setMethod("parallel",
 #' @param filter flowCore filter
 #' @export 
 #' @rdname lattice-methods
-setMethod("parallel",
+setMethod("parallelplot",
           signature(x = "formula", data = "flowSet"),
           function(x, data,
                    time = "Time", exclude.time = TRUE,

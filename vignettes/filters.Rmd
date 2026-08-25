@@ -618,11 +618,11 @@ Filters in parallel coodinate plots
 ------------
 Although the `filter` argument does not make much sense except
 in scatter plots, `filterResults` can be used for grouping in
-other contexts.  So far, only the `parallel` method supports
+other contexts.  So far, only the `parallelplot` method supports
 this syntax.
 
 ```{r parCoord}
-parallel(~ . | Visit, GvHD, filter=n2Filter.results, alpha = 0.01)
+parallelplot(~ . | Visit, GvHD, filter=n2Filter.results, alpha = 0.01)
 ``` 
 
 

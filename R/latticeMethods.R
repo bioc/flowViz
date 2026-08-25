@@ -125,7 +125,7 @@ setMethod("levelplot",
 #' \code{\link[MASS:kde2d]{kde2d}}) with a common z-scale and an optional color
 #' key.  }
 #' 
-#' \item{parallel}{\code{signature(x = "flowFrame", data = "missing")}: draws a
+#' \item{parallelplot}{\code{signature(x = "flowFrame", data = "missing")}: draws a
 #' parallel coordinates plot of all channels (excluding time, by default) of a
 #' \code{flowFrame} object.  This is rarely useful without transparency, but
 #' that is currently only possible with the \code{\link{pdf}} device (and
@@ -155,12 +155,12 @@ setMethod("levelplot",
 #' 
 #' ## parallel coordinate plots
 #' 
-#' parallel(GvHD[["s6a01"]])
+#' parallelplot(GvHD[["s6a01"]])
 #' 
 #' \dontrun{
 #' 
 #' ## try with PDF device
-#' parallel(GvHD[["s7a01"]], alpha = 0.01)
+#' parallelplot(GvHD[["s7a01"]], alpha = 0.01)
 #' 
 #' }
 #' 
